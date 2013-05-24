@@ -1,14 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>HippieGit</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Hippie Ipsum" %> - Trust the Process</title>
+    <%= csrf_meta_tags %>
 
-<%= yield %>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
 
-</body>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- Google web fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <%= bootstrap_flash %>
+
+      <div class="row">
+        <div class="span10 offset1">
+          <%= render partial: 'header' %>
+          <%= render partial: 'selector' %>
+          <%= yield %>
+          <%= render partial: 'social' %>
+          <footer>
+            <%= render partial: 'footer' %>
+          </footer>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
+  </body>
 </html>

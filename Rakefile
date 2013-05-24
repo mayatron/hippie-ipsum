@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-HippieGit::Application.load_tasks
+Hippie::Application.load_tasks

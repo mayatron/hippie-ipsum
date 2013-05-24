@@ -1,4 +1,8 @@
-HippieGit::Application.routes.draw do
+Hippie::Application.routes.draw do
+
+  root :to => 'app#show', via: :get
+  root :to => 'app#generate', via: :post
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

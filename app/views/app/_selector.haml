@@ -1,0 +1,9 @@
+.selector.box.text-center.rainbow-border
+  %p.select-label Select your desired level of enlightenment.
+  .btn-toolbar
+    .btn-group
+      - RANGE_PARAGRAPHS.each do |i|
+        = form_tag("/", remote: true) do
+          = submit_tag "#{i}", { class: "btn btn-submit", id: "select-#{i}" }
+        - if i == 4
+          .break

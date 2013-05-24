@@ -1,0 +1,72 @@
+class AppController < ApplicationController
+
+  def show
+    count = (params[:paragraphs] || PARAGRAPH_COUNT_DEFAULT).to_i
+    @paragraphs = build_paragraphs(count)
+    render "index", layout: "application"
+  end
+
+  # Generate paragraphs from button click.
+  # TODO: DRY up, consolidate show and generate methods
+  def generate
+    count = (params[:commit] || PARAGRAPH_COUNT_DEFAULT).to_i
+    @paragraphs = build_paragraphs(count)
+    render json: { partial: render_to_string('_ipsum', layout: false), count: count }
+  end
+
+  private
+
+  # Builds the dictionary from a file.
+  # TODO: switch to YAML based dictionary
+  # TODO: keep dictionary loaded, no point in reloading it every time
+  def build_dictionary
+    # require 'yaml'
+    # dictionary = YAML.load_file("config/phrases.yml")
+    # dictionary_length = dictionary.values.collect(&:count).sum
+
+    IO.read("config/phrases.txt").split(/\n/)
+  end
+
+  # Builds all paragraphs. Adds "Namaste." to the final paragraph.
+  def build_paragraphs(number_of_paragraphs)
+    paragraphs = number_of_paragraphs.times.collect { build_paragraph }
+    paragraphs.last.concat(" Namaste.")
+    return paragraphs
+  end
+
+  # Returns a paragaph of ipsum text from the dictionary, such that no phrase from the dictionary
+  # is repeated in the paragraph.
+  def build_paragraph
+    paragraph = []
+    dictionary = build_dictionary
+    sentence_count = rand(RANGE_SENTENCES_PER_PARAGRAPH)
+
+    sentence_count.times do
+      word_count = rand(RANGE_PHRASES_PER_SENTENCE)
+      words = dictionary.sample(word_count)
+      dictionary -= words
+      words.map! { |word| word.include?(",") ? word.split(", ").sample : word }
+      paragraph << build_sentence(words)
+   end
+
+    return paragraph.join(" ")
+  end
+
+  def build_sentence(words)
+    sentence = insert_comma_into_word_array(words).join(" ").concat(".")
+    capitalize_first_letter(sentence)
+  end
+
+  def insert_comma_into_word_array(words)
+    comma_insertion_index_end = words.length - MIN_WORDS_AFTER_COMMA - 1
+    comma_insertion_index = rand(MIN_WORDS_BEFORE_COMMA..comma_insertion_index_end)
+    words[comma_insertion_index] += ","
+    words
+  end
+
+  # Capitalize first letter of a string, leave all other letters untouched.
+  def capitalize_first_letter(string)
+    string.slice(0,1).capitalize + string.slice(1..-1)
+  end
+
+end
