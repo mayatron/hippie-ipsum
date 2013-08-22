@@ -1,4 +1,5 @@
 class Dictionary < ActiveRecord::Base
+  # THIS DICTIONARY CLASS IS NOT USED YET
   # attr_accessible :title, :body
 
   after_initialize :build_dictionary

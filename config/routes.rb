@@ -1,7 +1,6 @@
 Hippie::Application.routes.draw do
 
-  root :to => 'app#show', via: :get
-  root :to => 'app#generate', via: :post
+  root to: 'app#show', via: [:get, :post]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

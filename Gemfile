@@ -1,19 +1,16 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
-gem 'rails', '3.2.12'
+gem 'rails', '4.0.0'
 gem 'mysql2'
-gem 'haml'
-gem 'twitter-bootstrap-rails'
-gem 'jquery-rails'
+gem 'haml', '~> 4.0.3'
+gem 'twitter-bootstrap-rails', '~> 2.2.8'
+gem 'jquery-rails', '~> 3.0.4'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+# assets
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.0.3'
 
 group :production, :staging do
   gem 'pg'

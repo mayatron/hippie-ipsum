@@ -1,29 +1,23 @@
 class AppController < ApplicationController
 
   def show
-    count = (params[:paragraphs] || PARAGRAPH_COUNT_DEFAULT).to_i
-    @paragraphs = build_paragraphs(count)
-    render "index", layout: "application"
-  end
-
-  # Generate paragraphs from button click.
-  # TODO: DRY up, consolidate show and generate methods
-  def generate
     count = (params[:commit] || PARAGRAPH_COUNT_DEFAULT).to_i
     @paragraphs = build_paragraphs(count)
-    render json: { partial: render_to_string('_ipsum', layout: false), count: count }
+
+    respond_to do |format|
+      format.html { render :index }
+      format.js {
+        render json: { partial: render_to_string('_ipsum', layout: false), count: count }
+      }
+    end
   end
 
   private
 
   # Builds the dictionary from a file.
   # TODO: switch to YAML based dictionary
-  # TODO: keep dictionary loaded, no point in reloading it every time
+  # TODO: keep dictionary object loaded; no point in reloading it every time
   def build_dictionary
-    # require 'yaml'
-    # dictionary = YAML.load_file("config/phrases.yml")
-    # dictionary_length = dictionary.values.collect(&:count).sum
-
     IO.read("config/phrases.txt").split(/\n/)
   end
 
