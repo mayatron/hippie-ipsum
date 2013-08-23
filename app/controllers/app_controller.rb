@@ -1,22 +1,20 @@
 class AppController < ApplicationController
 
   def show
-    count = (params[:commit] || PARAGRAPH_COUNT_DEFAULT).to_i
+    count = ( params[:p] || PARAGRAPH_COUNT_DEFAULT ).to_i
     @paragraphs = build_paragraphs(count)
 
     respond_to do |format|
       format.html { render :index }
-      format.js {
-        render json: { partial: render_to_string('_ipsum', layout: false), count: count }
-      }
+      format.js { render json:
+        { partial: render_to_string('_ipsum', layout: false), count: count } }
     end
   end
 
   private
 
   # Builds the dictionary from a file.
-  # TODO: switch to YAML based dictionary
-  # TODO: keep dictionary object loaded; no point in reloading it every time
+  # TODO: switch to YAML based dictionary.
   def build_dictionary
     IO.read("config/phrases.txt").split(/\n/)
   end
@@ -28,8 +26,8 @@ class AppController < ApplicationController
     return paragraphs
   end
 
-  # Returns a paragaph of ipsum text from the dictionary, such that no phrase from the dictionary
-  # is repeated in the paragraph.
+  # Returns a paragaph of ipsum text from the dictionary, with no phrases repeated.
+  # TODO: split up this method, probably two functions here.
   def build_paragraph
     paragraph = []
     dictionary = build_dictionary
@@ -46,11 +44,13 @@ class AppController < ApplicationController
     return paragraph.join(" ")
   end
 
+  # Builds a sentence, capitalized, with comma, ends with period.
   def build_sentence(words)
     sentence = insert_comma_into_word_array(words).join(" ").concat(".")
     capitalize_first_letter(sentence)
   end
 
+  # Inserts a comma into a word array.
   def insert_comma_into_word_array(words)
     comma_insertion_index_end = words.length - MIN_WORDS_AFTER_COMMA - 1
     comma_insertion_index = rand(MIN_WORDS_BEFORE_COMMA..comma_insertion_index_end)
