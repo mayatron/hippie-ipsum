@@ -1,8 +1,9 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby '2.0.0'
 
+gem 'bundler', '~> 1.3.5'
+
 gem 'rails', '4.0.0'
-gem 'mysql2'
 gem 'haml', '~> 4.0.3'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 gem 'jquery-rails', '~> 3.0.4'
@@ -15,6 +16,7 @@ gem 'uglifier', '>= 1.0.3'
 group :production, :staging do
   gem 'pg'
   gem 'newrelic_rpm'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
