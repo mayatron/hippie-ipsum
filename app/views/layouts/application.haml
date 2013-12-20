@@ -1,16 +1,16 @@
 !!!
-%html{:lang => "en"}
+%html{lang: "en"}
   %head
-    %meta{:charset => "utf-8"}
-    %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
 
     %title Hippie Ipsum - Trust the Process
     = csrf_meta_tags
-    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "application", media: "all"
 
     / Google web fonts
-    %link{:href => "http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister", :rel => "stylesheet", :type => "text/css"}/
+    %link{href: "http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister", rel: "stylesheet", type: "text/css"}/
 
   %body
     .container
