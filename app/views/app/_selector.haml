@@ -1,6 +1,0 @@
-.selector.box.text-center
-  %p.select-label Select your desired level of enlightenment.
-  .btn-toolbar
-    .btn-group
-      - RANGE_PARAGRAPHS.each do |i|
-        .btn.btn-submit{ id: "select-#{i}", data: { p: i } }= i

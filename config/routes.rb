@@ -1,6 +1,12 @@
 Hippie::Application.routes.draw do
 
-  root to: 'app#show', via: [:get, :post]
+  root to: 'application#index', via: [:get]
+
+  namespace :api do
+    namespace :v1 do
+      match 'get(/:id)', to: 'api#index', via: [:get]
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
