@@ -1,0 +1,12 @@
+%hr
+.selector.text-center
+  %p.select-label How many paragraphs of enlightment do you desire?
+  .btn-toolbar
+    .btn-group
+      - RANGE_PARAGRAPHS.each do |i|
+        .btn.btn-submit{ id: "select-#{i}", data: { p: i } }= i
+
+%hr
+#paragraphs
+  = render partial: "ipsum"
+%hr

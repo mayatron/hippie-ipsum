@@ -9,19 +9,17 @@
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
 
-    / Google web fonts
     %link{href: "http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister", rel: "stylesheet", type: "text/css"}/
 
   %body
     .container
       .row
-        .span10.offset1
-          = render partial: 'header'
-          = render partial: 'selector'
+        .col-md-10.col-md-offset-1
+          = render partial: "header"
           = yield
-          = render partial: 'social'
+          .social.text-center
+            = render partial: "social"
           %footer
-            = render partial: 'footer'
+            = render partial: "footer"
 
-    / Javascripts: placed at the end of the document so the pages load faster
     = javascript_include_tag "application"

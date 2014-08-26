@@ -1,20 +1,13 @@
-class Dictionary < ActiveRecord::Base
-  # THIS DICTIONARY CLASS IS NOT USED YET
-  # attr_accessible :title, :body
+class Dictionary
+  attr_accessor :phrases
 
-  after_initialize :build_dictionary
-
-  def build_dictionary
-    # require 'yaml'
-    # self.words = YAML.load_file("config/phrases.yml")
+  def initialize
+    @phrases = IO.read("data/phrases.txt").split(/\n/).shuffle
   end
 
-  def count
-    self.values.collect(&:count).sum
-  end
-
-  def fetch(integer)
-    # will pull entries out of the dictionary
+  # Pluck random phrases from the dictionary; returns an array of phrases.
+  def pluck(count)
+    phrases.shift(count).map { |set| set.split(", ").sample }
   end
 
 end
