@@ -66,6 +66,17 @@ h1, h2, h3, h1.title, h3.tagline {
   margin-bottom: 20px;
 }
 
+// SOCIAL
+
+.social {
+  display: flex;
+  justify-content: center;
+
+  .social-block {
+    width: 200px;
+  }
+}
+
 // FOOTER
 
 footer {
