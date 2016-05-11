@@ -48,7 +48,9 @@ h1, h2, h3, h1.title, h3.tagline {
       border-color: gold;
     }
 
-    &:active, &.active { box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.3); }
+    &:active, &.active {
+      box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.3);
+    }
   }
 
   #select-1 { background: red; }
@@ -107,10 +109,23 @@ footer {
 // RESPONSIVE
 
 @media only screen and (max-width: 480px) {
-  .title { font-size: 40px; }
+
+  .title {
+    font-size: 40px;
+  }
+
   .selector .btn-submit {
     width: 36px;
     margin: 0;
+  }
+
+  .social {
+    display: block;
+    margin-bottom: 2em;
+
+    .social-block {
+      margin: auto;
+    }
   }
 }
 
