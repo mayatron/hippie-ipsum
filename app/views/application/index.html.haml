@@ -1,5 +1,5 @@
 %hr
-.selector.text-center
+.selector.text-xs-center
   %p.select-label How many paragraphs of enlightment do you desire?
   .btn-toolbar
     .btn-group
@@ -7,6 +7,6 @@
         .btn.btn-submit{ id: "select-#{i}", data: { p: i } }= i
 
 %hr
-#paragraphs
+.ipsum-paragraphs
   = render partial: "ipsum"
 %hr
