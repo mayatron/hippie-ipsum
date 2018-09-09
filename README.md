@@ -1,7 +1,7 @@
 hippie-ipsum
 ============
 
-Hippie Ipsum is a hippie-flavored [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum) (fake text) generator.
+Hippie Ipsum is a hippie-flavored fake text generator.
 
 ## API
 
